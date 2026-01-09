@@ -1,20 +1,16 @@
 import { createRoot } from 'react-dom/client'
+import Car from './Vehicle.jsx';
 
-function Car() {
-  return (
-    <h2>I am a Car!</h2>
-  );
+
+
+class Cars extends React.Component {
+  render() {
+    return <h2>Hi, I am a Car!</h2>;
+  }
 }
-
-function Garage() {
-  return (
-    <>
-      <h1>Who lives in my Garage?</h1>
-      <Car />
-    </>
-  );
-}
-
 createRoot(document.getElementById('root')).render(
-  <Garage />
+  <>
+    <Car />
+    <Cars />
+  </>
 );
