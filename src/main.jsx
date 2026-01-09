@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client'
 import Car from './Vehicle.jsx';
-function Car(props) {
+function Cars(props) {
   return (
     <>
       <h2>My {props.carinfo.name} {props.carinfo.model}!</h2>
@@ -18,7 +18,7 @@ const carInfo = {
 };
 
 createRoot(document.getElementById('root')).render(
-  <Car carinfo={carInfo} />
+  <Cars carinfo={carInfo} />
 );
 
 
