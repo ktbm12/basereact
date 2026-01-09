@@ -1,7 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client'
-import Vehicle from './Vehicle.jsx';
-class Car extends React.Component {
+import Car from './Vehicle.jsx';
+
+class Cars extends React.Component {
   render() {
     return <h2>Hi, I am a Car!</h2>;
   }
@@ -10,11 +11,14 @@ class Car extends React.Component {
 createRoot(document.getElementById('root')).render(
   <>
     <Car />
-    
-    <Cars />   
-    
 
-  </>
+    <Cars />
+    </>
+
+     
+
+
+  
 );
 
                     
