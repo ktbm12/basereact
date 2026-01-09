@@ -1,3 +1,5 @@
+import { createRoot } from 'react-dom/client'
+
 function Car() {
   return (
     <h2>I am a Car!</h2>
