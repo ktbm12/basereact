@@ -1,7 +1,7 @@
-function Car() {
+function Cars() {
     return (
       <h2>Hi, I am a Car!</h2>
     );
   }
   
-  export default Car;
+  export default Cars;
