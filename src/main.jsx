@@ -1,59 +1,38 @@
-
-
-import { useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-function MyForm() {
-  const [selectedFruit, setSelectedFruit] = useState('banana');
+function Home() {
+  return <h1>Home Page</h1>;
+}
 
-  const handleChange = (event) => {
-    setSelectedFruit(event.target.value);
-  };
+function About() {
+  return <h1>About Page</h1>;
+}
 
-  const handleSubmit = (event) => {
-    alert(`Your favorite fruit is: ${selectedFruit}`);
-    event.preventDefault();
-  };
+function Contact() {
+  return <h1>Contact Page</h1>;
+}
 
+function App() {
   return (
-    <form onSubmit={handleSubmit}>
-      <p>Select your favorite fruit:</p>
-      <label>
-        <input 
-          type="radio" 
-          name="fruit" 
-          value="apple" 
-          checked={selectedFruit === 'apple'} 
-          onChange={handleChange} 
-        /> Apple
-      </label>
-      <br />
-      <label>
-        <input 
-          type="radio" 
-          name="fruit" 
-          value="banana" 
-          checked={selectedFruit === 'banana'} 
-          onChange={handleChange} 
-        /> Banana
-      </label>
-      <br />
-      <h1 style={{color: "red"}}>Hello Style!</h1>
-      <label>
-        <input 
-          type="radio" 
-          name="fruit" 
-          value="cherry" 
-          checked={selectedFruit === 'cherry'} 
-          onChange={handleChange} 
-        /> Cherry
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <BrowserRouter>
+      {/* Navigation */}
+      <nav>
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/about">About</Link> |{" "}
+        <Link to="/contact">Contact</Link>
+      </nav>
+
+      {/* Routes */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 createRoot(document.getElementById('root')).render(
-  <MyForm />
+  <App />
 );
