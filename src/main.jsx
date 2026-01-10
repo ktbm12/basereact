@@ -1,3 +1,5 @@
+import { createRoot } from 'react-dom/client'
+
 function Football() {
   const shoot = () => {
     alert("Great Shot!");
