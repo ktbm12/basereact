@@ -38,6 +38,7 @@ function MyForm() {
         /> Banana
       </label>
       <br />
+      <h1 style={{color: "red"}}>Hello Style!</h1>
       <label>
         <input 
           type="radio" 
