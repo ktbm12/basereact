@@ -1,45 +1,93 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const menuItems = [
+    { name: "Accueil", href: "#home" },
+    { name: "Services", href: "#services" },
+    { name: "Compétences", href: "#skills" },
+    { name: "Réalisations", href: "#projects" },
+    { name: "Blog", href: "#blog" },
+    { name: "Témoignages", href: "#testimonials" },
+    { name: "Contact", href: "#contact" },
+  ];
+
   return (
-    <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className="fixed top-0 w-full z-50 glass border-b border-white/5"
-    >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-        <motion.span 
-          whileHover={{ scale: 1.05 }}
-          className="text-2xl font-black bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent cursor-pointer"
-        >
-          KTB.DEV
-        </motion.span>
-        
+    <nav className="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+        {/* LOGO */}
+        <a href="#home" className="text-xl font-bold text-white tracking-tighter">
+          KTB<span className="text-indigo-500">.</span>DEV
+        </a>
+
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          {["Skills", "Projects", "Contact"].map((item) => (
-            <a 
-              key={item}
-              href={`#${item.toLowerCase()}`} 
+          {menuItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
               className="text-sm font-medium text-slate-400 hover:text-white transition-colors"
             >
-              {item}
+              {item.name}
             </a>
           ))}
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-5 py-2.5 bg-white text-slate-950 text-sm font-bold rounded-full hover:bg-slate-200 transition-colors"
+          <a
+            href="#contact"
+            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-lg transition-colors"
           >
-            Let's Talk
-          </motion.button>
+            Parlons-en
+          </a>
         </div>
 
-        <button className="md:hidden text-white">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
+        {/* Mobile Toggle Button */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-slate-400 hover:text-white focus:outline-none"
+        >
+          {isOpen ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          )}
         </button>
       </div>
-    </motion.nav>
+
+      {/* Mobile Sidebar */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 top-16 z-40 bg-slate-950 md:hidden flex flex-col p-6 space-y-6"
+          >
+            {menuItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="text-xl font-semibold text-slate-200 hover:text-indigo-500 border-b border-slate-900 pb-2"
+              >
+                {item.name}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              onClick={() => setIsOpen(false)}
+              className="w-full py-4 bg-indigo-600 text-center text-white font-bold rounded-xl"
+            >
+              Me Contacter
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
 }
