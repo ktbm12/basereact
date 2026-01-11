@@ -28,9 +28,9 @@ class TestimonialSerializer(serializers.ModelSerializer):
 
 
 from rest_framework import serializers
-from .models import SiteSettings
+from .models import SiteConfiguration
 
 class SiteSettingsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SiteSettings
+        model = SiteConfiguration
         fields = '__all__'
