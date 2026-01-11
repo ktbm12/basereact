@@ -1,19 +1,8 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-
+// src/App.jsx
 export default function App() {
   return (
-    <div className="bg-gradient-to-br from-black via-slate-900 to-indigo-900 text-white">
-      <Navbar />
-      <Hero />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
+    <div className="bg-red-500 min-h-screen flex items-center justify-center text-white text-2xl">
+      Hello Tailwind + Vite !
     </div>
   );
 }
