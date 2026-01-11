@@ -12,3 +12,7 @@ from .models import Skill, Service, BlogPost
 admin.site.register(Skill)
 admin.site.register(Service)
 admin.site.register(BlogPost)
+
+
+from .models import SiteConfiguration
+admin.site.register(SiteConfiguration)
