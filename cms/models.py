@@ -57,3 +57,25 @@ class BlogPost(BaseModel):
 
     def __str__(self):
         return self.title
+
+
+class SiteConfiguration(BaseModel):
+    site_name = models.CharField(max_length=120)
+    slogan = models.CharField(max_length=200, blank=True)
+    email = models.EmailField()
+    phone = models.CharField(max_length=50)
+    address = models.CharField(max_length=255, blank=True)
+
+    # Social networks
+    facebook = models.URLField(blank=True)
+    linkedin = models.URLField(blank=True)
+    github = models.URLField(blank=True)
+    whatsapp = models.CharField(max_length=50, blank=True)
+    twitter = models.URLField(blank=True)
+
+    # SEO
+    meta_title = models.CharField(max_length=200)
+    meta_description = models.TextField()
+
+    def __str__(self):
+        return "Site Global Settings"
