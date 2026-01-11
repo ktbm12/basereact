@@ -18,7 +18,7 @@ class ServiceViewSet(viewsets.ModelViewSet):
     serializer_class = ServiceSerializer
 
 class BlogViewSet(viewsets.ModelViewSet):
-    queryset = Blog.objects.all()
+    queryset = BlogPost.objects.all()
     serializer_class = BlogSerializer
 
 class TestimonialViewSet(viewsets.ModelViewSet):
