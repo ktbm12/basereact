@@ -45,3 +45,15 @@ class Service(BaseModel):
 
     def __str__(self):
         return self.title
+
+
+class BlogPost(BaseModel):
+    title = models.CharField(max_length=200)
+    slug = AutoSlugField(populate_from="title", unique=True)
+    excerpt = models.TextField()
+    content = models.TextField()
+    cover = models.ImageField(upload_to="blog/")
+    is_published = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
