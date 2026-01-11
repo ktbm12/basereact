@@ -26,3 +26,12 @@ class Testimonial(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class Skill(BaseModel):
+    name = models.CharField(max_length=100)
+    level = models.IntegerField(default=80)   # %
+    icon = models.CharField(max_length=100)   # ex: "django", "react"
+
+    def __str__(self):
+        return self.name
