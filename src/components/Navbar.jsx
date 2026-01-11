@@ -15,7 +15,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <nav className={`fixed top-0 w-full z-50 transition-colors duration-300 ${isOpen ? 'bg-slate-950' : 'bg-slate-950/80 backdrop-blur-md'} border-b border-slate-800`}>
       <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
         {/* LOGO */}
         <a href="#home" className="text-xl font-bold text-white tracking-tighter">
@@ -44,7 +44,8 @@ export default function Navbar() {
         {/* Mobile Toggle Button */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-slate-400 hover:text-white focus:outline-none"
+          className="md:hidden text-slate-400 hover:text-white focus:outline-none p-2"
+          aria-label="Toggle Menu"
         >
           {isOpen ? (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,18 +63,18 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 top-16 z-40 bg-slate-950 md:hidden flex flex-col p-6 space-y-6"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 top-16 z-50 bg-slate-950 md:hidden flex flex-col p-6 space-y-6 h-screen overflow-y-auto"
           >
             {menuItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="text-xl font-semibold text-slate-200 hover:text-indigo-500 border-b border-slate-900 pb-2"
+                className="text-xl font-semibold text-slate-200 hover:text-indigo-500 border-b border-slate-900 pb-4"
               >
                 {item.name}
               </a>
@@ -81,7 +82,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setIsOpen(false)}
-              className="w-full py-4 bg-indigo-600 text-center text-white font-bold rounded-xl"
+              className="w-full py-4 bg-indigo-600 text-center text-white font-bold rounded-xl shadow-lg"
             >
               Me Contacter
             </a>
