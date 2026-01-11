@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import profilePhoto from "../assets/photo.jpg";
 
 export default function Hero() {
   return (
@@ -18,30 +19,29 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase tracking-widest font-bold text-indigo-400 mb-8"
+            className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-[10px] uppercase tracking-widest font-bold text-indigo-400 mb-8"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
             </span>
-            <span>Open for collaborations</span>
+            <span>Available for new opportunities</span>
           </motion.div>
 
-          <h1 className="text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter">
+          <h1 className="text-6xl md:text-8xl font-black mb-8 leading-[0.9] tracking-tighter text-white">
             Full-Stack <br />
             <span className="gradient-text">Architect.</span>
           </h1>
 
           <p className="text-xl text-slate-400 max-w-lg mb-12 leading-relaxed">
-            I transform complex technical requirements into <span className="text-white">stunning digital products</span>. Specializing in high-scale Django systems and fluid React interfaces.
+            I transform complex technical requirements into <span className="text-white">stunning digital products</span>. Specializing in high-scale enterprise systems and fluid interfaces.
           </p>
 
           <div className="flex flex-wrap gap-4 items-center">
             <button className="btn-primary">
-              Start a Project
+              Let's Collaborate
             </button>
             <div className="flex gap-4 ml-4">
-              {/* Profile Socials for visibility */}
               <a href="#" className="p-3 glass rounded-xl hover:text-indigo-400 transition-colors">
                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
               </a>
@@ -60,21 +60,17 @@ export default function Hero() {
         >
           {/* Main Image Frame */}
           <div className="relative w-72 h-72 md:w-96 md:h-96">
-            {/* Background geometric shapes */}
-            <div className="absolute -top-4 -right-4 w-full h-full border border-indigo-500/20 rounded-[3rem] rotate-3"></div>
-            <div className="absolute -bottom-4 -left-4 w-full h-full border border-purple-500/20 rounded-[3rem] -rotate-3"></div>
+            <div className="absolute -inset-4 bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 rounded-[3.5rem] blur-2xl"></div>
             
-            {/* The Image Container */}
-            <div className="relative w-full h-full rounded-[3rem] overflow-hidden border-2 border-white/10 shadow-2xl glass">
+            <div className="relative w-full h-full rounded-[3.5rem] overflow-hidden border-2 border-white/10 shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" 
-                alt="Profile"
-                className="w-full h-full object-cover scale-110"
+                src={profilePhoto} 
+                alt="Profile photo"
+                className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 to-transparent"></div>
             </div>
 
-            {/* Floating Badges */}
             <motion.div 
                animate={{ y: [0, -10, 0] }}
                transition={{ repeat: Infinity, duration: 3 }}
@@ -85,7 +81,7 @@ export default function Hero() {
             </motion.div>
 
             <motion.div 
-               animate={{ y: [0, 10, 0] }}
+               animate={{ x: [0, 10, 0] }}
                transition={{ repeat: Infinity, duration: 4 }}
                className="absolute -left-12 bottom-1/4 glass p-4 rounded-2xl border border-white/20 shadow-xl text-center"
             >
