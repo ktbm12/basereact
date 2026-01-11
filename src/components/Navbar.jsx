@@ -12,7 +12,7 @@ export default function Navbar() {
           whileHover={{ scale: 1.05 }}
           className="text-2xl font-black bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent cursor-pointer"
         >
-          KB.DEV
+          KTB.DEV
         </motion.span>
         
         <div className="hidden md:flex items-center space-x-8">

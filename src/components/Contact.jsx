@@ -11,9 +11,9 @@ export default function Contact() {
         className="glass overflow-hidden rounded-[2rem] border-white/5 grid md:grid-cols-2"
       >
         <div className="p-12 bg-indigo-600">
-          <h2 className="text-4xl font-black text-white mb-6">Let's build something <br /> extra-ordinary.</h2>
+          <h2 className="text-4xl font-black text-white mb-6">Travaillons <br />ensemble.</h2>
           <p className="text-indigo-100 mb-12 max-w-sm">
-            Ready to start your next big project? I'm currently accepting new commissions.
+            Vous avez un projet ambitieux ? Je suis disponible pour transformer vos idées en réalité numérique.
           </p>
           
           <div className="space-y-6 text-indigo-50">
@@ -22,8 +22,17 @@ export default function Contact() {
                 📧
               </div>
               <div>
-                <p className="text-xs text-indigo-200">Email Me</p>
-                <p className="font-bold">hello@ktbm.dev</p>
+                <p className="text-xs text-indigo-200 uppercase font-bold">Email</p>
+                <p className="font-bold">boliventtalla12@gmail.com</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center">
+                📞
+              </div>
+              <div>
+                <p className="text-xs text-indigo-200 uppercase font-bold">Téléphone</p>
+                <p className="font-bold">+237 691 199 223</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -31,8 +40,8 @@ export default function Contact() {
                 📍
               </div>
               <div>
-                <p className="text-xs text-indigo-200">Location</p>
-                <p className="font-bold">Remote / Worldwide</p>
+                <p className="text-xs text-indigo-200 uppercase font-bold">Localisation</p>
+                <p className="font-bold">Bafoussam, Cameroun</p>
               </div>
             </div>
           </div>
