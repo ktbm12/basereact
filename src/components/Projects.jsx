@@ -1,28 +1,29 @@
 import { motion } from "framer-motion";
+import braidingImg from "../assets/Capture d’écran du 2026-01-11 08-15-41.png";
 
 const projectList = [
   {
-    title: "Eco-System SaaS Platform",
-    category: "Full-Stack Development",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
-    desc: "A comprehensive dashboard for monitoring renewable energy consumption across multiple industrial sites.",
-    tech: ["Django", "React", "Chart.js", "Redis"],
-    link: "#"
+    title: "Black Braiding Palace",
+    category: "E-Commerce & Service Platform",
+    image: braidingImg,
+    desc: "Platforme de services de coiffure et vente de produits de beauté. Design élégant et réservation en ligne.",
+    tech: ["React", "CSS", "UI/UX"],
+    link: "https://blackbraidingpalace.onrender.com/"
   },
   {
-    title: "AI Market Analyzer",
-    category: "Machine Learning / Product",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
-    desc: "Predictive analytics tool for crypto markets using sentiment analysis and historical data patterns.",
-    tech: ["Python", "TensorFlow", "FastAPI", "React"],
-    link: "#"
+    title: "Institut der Fuchs",
+    category: "Education & Corporate",
+    image: "https://images.unsplash.com/photo-1523050335456-cde944a77d0d?q=80&w=1000&auto=format&fit=crop",
+    desc: "Site institutionnel pour l'apprentissage et la formation. Interface bilingue et gestion de contenu.",
+    tech: ["Web Design", "Professional Service"],
+    link: "https://institutderfuchs.de"
   },
   {
     title: "CloudVault Pro",
     category: "Cybersecurity / Infrastructure",
     image: "https://images.unsplash.com/photo-1558494949-ef010978b8a4?q=80&w=1000&auto=format&fit=crop",
-    desc: "Enterprise-grade encrypted storage solution with multi-region replication and audit logging.",
-    tech: ["Node.js", "AWS S3", "Docker", "Nginx"],
+    desc: "Solution de stockage sécurisé avec réplication multi-régions et journaux d'audit.",
+    tech: ["Node.js", "AWS", "Docker"],
     link: "#"
   }
 ];
@@ -33,17 +34,15 @@ export default function Projects() {
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
         <div>
           <h2 className="text-4xl md:text-6xl font-black mb-6">
-            Selected <span className="gradient-text">Achievements</span>
+            Mes <span className="gradient-text">Réalisations</span>
           </h2>
           <p className="text-slate-400 max-w-xl text-lg">
-            A demonstration of technical expertise across various domains, 
-            focusing on performance and tangible business impact.
+            Une sélection de mes travaux récents, démontrant mon expertise technique et mon sens du design.
           </p>
         </div>
         <div className="flex gap-4">
-           {/* Navigation buttons or counters could go here */}
-           <div className="px-6 py-3 border border-white/10 rounded-full font-mono text-sm">
-             Total Projects / 12
+           <div className="px-6 py-3 border border-white/10 rounded-full font-mono text-sm underline decoration-indigo-500">
+             Projets Réels
            </div>
         </div>
       </div>
@@ -78,6 +77,8 @@ export default function Projects() {
 
               <motion.a 
                 href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="absolute top-6 right-6 w-12 h-12 bg-white text-slate-950 rounded-full flex items-center justify-center shadow-xl opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300"
