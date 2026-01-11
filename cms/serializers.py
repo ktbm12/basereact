@@ -25,8 +25,3 @@ class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Testimonial
         fields = '__all__'
-
-class SiteConfigurationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SiteConfiguration
-        fields = '__all__'
