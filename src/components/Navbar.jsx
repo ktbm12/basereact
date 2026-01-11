@@ -1,14 +1,45 @@
+import { motion } from "framer-motion";
+
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 w-full z-50 backdrop-blur bg-black/40 border-b border-white/10">
-      <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
-        <span className="font-bold">ktbm.dev</span>
-        <div className="space-x-6 hidden md:block">
-          <a href="#skills" className="hover:text-indigo-400">Skills</a>
-          <a href="#projects" className="hover:text-indigo-400">Projects</a>
-          <a href="#contact" className="hover:text-indigo-400">Contact</a>
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className="fixed top-0 w-full z-50 glass border-b border-white/5"
+    >
+      <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <motion.span 
+          whileHover={{ scale: 1.05 }}
+          className="text-2xl font-black bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent cursor-pointer"
+        >
+          KB.DEV
+        </motion.span>
+        
+        <div className="hidden md:flex items-center space-x-8">
+          {["Skills", "Projects", "Contact"].map((item) => (
+            <a 
+              key={item}
+              href={`#${item.toLowerCase()}`} 
+              className="text-sm font-medium text-slate-400 hover:text-white transition-colors"
+            >
+              {item}
+            </a>
+          ))}
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-5 py-2.5 bg-white text-slate-950 text-sm font-bold rounded-full hover:bg-slate-200 transition-colors"
+          >
+            Let's Talk
+          </motion.button>
         </div>
+
+        <button className="md:hidden text-white">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
       </div>
-    </nav>
+    </motion.nav>
   );
 }

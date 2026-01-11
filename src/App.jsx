@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="bg-gradient-to-br from-black via-slate-900 to-indigo-900 text-white min-h-screen">
+    <div className="bg-slate-950 overflow-x-hidden">
       <Navbar />
       <Hero />
       <Skills />
