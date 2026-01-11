@@ -5,12 +5,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # API apps
     path('api/contact/', include('contact.urls')),
     path('api/cms/', include('cms.urls')),
+    path('api/common/', include('common.urls')),
 ]
 
-# Serve media files en dev uniquement
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

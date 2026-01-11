@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import ContactMessage
+from .models import Message
 
 class ContactMessageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ContactMessage
+        model = Message
         fields = '__all__'

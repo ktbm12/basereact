@@ -1,8 +1,10 @@
-# contact/urls.py
-from django.urls import path
-from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ContactMessageViewSet
+
+router = DefaultRouter()
+router.register(r'messages', ContactMessageViewSet)
 
 urlpatterns = [
-    # Exemple d’endpoint API
-    
+    path('', include(router.urls)),
 ]
