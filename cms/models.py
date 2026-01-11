@@ -35,3 +35,13 @@ class Skill(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class Service(BaseModel):
+    title = models.CharField(max_length=150)
+    description = models.TextField()
+    icon = models.CharField(max_length=100)
+    price = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return self.title
