@@ -8,23 +8,34 @@ export default function Hero() {
       <motion.h1
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
         className="relative text-6xl md:text-7xl font-extrabold mb-6 tracking-tight"
       >
         Full-Stack Django & React Developer
       </motion.h1>
 
-      <p className="relative text-xl max-w-2xl mb-8 text-gray-300">
-        I build secure, scalable and real-time SaaS web applications for companies and startups.
-      </p>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="relative text-xl max-w-2xl mb-8 text-gray-300"
+      >
+        I build secure, scalable and real-time SaaS web applications.
+      </motion.p>
 
-      <div className="relative flex space-x-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="relative flex space-x-4"
+      >
         <button className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-2xl shadow-xl">
           Hire Me
         </button>
         <button className="px-8 py-4 bg-white/10 backdrop-blur border border-white/20 rounded-2xl">
           Download CV
         </button>
-      </div>
+      </motion.div>
     </section>
   );
 }
