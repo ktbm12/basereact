@@ -15,3 +15,14 @@ class Project(BaseModel):
 
     def __str__(self):
         return self.title
+
+
+class Testimonial(BaseModel):
+    name = models.CharField(max_length=120)
+    company = models.CharField(max_length=120)
+    message = models.TextField()
+    rating = models.IntegerField(default=5)
+    photo = models.ImageField(upload_to="testimonials/", blank=True)
+
+    def __str__(self):
+        return self.name
