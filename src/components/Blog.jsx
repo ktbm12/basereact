@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { fetchData } from "../api";
 
-const posts = [
+const mockPosts = [
   {
     title: "Optimiser les requêtes Django ORM",
     date: "12 Jan 2026",
@@ -16,6 +18,26 @@ const posts = [
 ];
 
 export default function Blog() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const data = await fetchData("cms/blogs");
+      if (data && data.length > 0) {
+        const formattedData = data.map(p => ({
+          title: p.title,
+          date: new Date(p.created).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }),
+          excerpt: p.excerpt,
+          image: p.cover
+        }));
+        setPosts(formattedData);
+      } else {
+        setPosts(mockPosts);
+      }
+    };
+    getPosts();
+  }, []);
+
   return (
     <section id="blog" className="section-container border-t border-slate-900">
       <div className="flex justify-between items-end mb-16">
@@ -31,7 +53,7 @@ export default function Blog() {
       <div className="grid md:grid-cols-2 gap-10">
         {posts.map((p, i) => (
           <motion.article
-            key={p.title}
+            key={i}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

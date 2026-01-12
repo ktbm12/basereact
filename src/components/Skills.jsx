@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { fetchData } from "../api";
 
-const skillsData = [
+const mockSkills = [
   {
     category: "Développement Frontend",
     skills: ["HTML5", "CSS3", "JavaScript", "React", "Next.js", "Tailwind CSS", "Bootstrap"]
@@ -16,6 +18,31 @@ const skillsData = [
 ];
 
 export default function Skills() {
+  const [skills, setSkills] = useState([]);
+
+  useEffect(() => {
+    const getSkills = async () => {
+      const data = await fetchData("cms/skills");
+      if (data && data.length > 0) {
+          // If backend doesn't group by category, we can either group here or just show a flat list.
+          // For now, let's assume we want to maintain the category look.
+          // If the backend skill model doesn't have a category, we might need to adjust.
+          // Looking at the model: name, level, icon. No category.
+          // I'll group them manually for now or just show one big group.
+          const groupedData = [
+              {
+                  category: "Technologies Maîtrisées",
+                  skills: data.map(s => s.name)
+              }
+          ];
+          setSkills(groupedData);
+      } else {
+          setSkills(mockSkills);
+      }
+    };
+    getSkills();
+  }, []);
+
   return (
     <section id="skills" className="section-container border-t border-slate-900 bg-slate-950/30">
       <div className="mb-16">
@@ -24,7 +51,7 @@ export default function Skills() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-8">
-        {skillsData.map((group, idx) => (
+        {skills.map((group, idx) => (
           <motion.div
             key={group.category}
             initial={{ opacity: 0, scale: 0.95 }}
