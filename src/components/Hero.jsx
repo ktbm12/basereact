@@ -1,7 +1,21 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { fetchData } from "../api";
 import profilePhoto from "../assets/photo.jpg";
 
 export default function Hero() {
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    const getSettings = async () => {
+      const data = await fetchData("cms/sitesettings");
+      if (data && data.length > 0) {
+        setSettings(data[0]);
+      }
+    };
+    getSettings();
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20">
       <div className="section-container relative z-10 grid lg:grid-cols-2 gap-16 items-center">
@@ -20,12 +34,21 @@ export default function Hero() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white tracking-tight">
-            Développeur <br />
-            <span className="text-indigo-500">Full-Stack.</span>
+            {settings?.site_name ? (
+              <>
+                {settings.site_name.split(' ')[0]} <br />
+                <span className="text-indigo-500">{settings.site_name.split(' ').slice(1).join(' ')}.</span>
+              </>
+            ) : (
+              <>
+                Développeur <br />
+                <span className="text-indigo-500">Full-Stack.</span>
+              </>
+            )}
           </h1>
 
           <p className="text-lg text-slate-400 max-w-lg mb-8 leading-relaxed">
-            Je conçois des solutions digitales performantes et évolutives pour les entreprises et startups. Spécialiste <span className="text-white">Django</span> & <span className="text-white">React</span>.
+            {settings?.slogan || "Je conçois des solutions digitales performantes et évolutives pour les entreprises et startups. Spécialiste Django & React."}
           </p>
 
           <div className="flex flex-wrap gap-4">

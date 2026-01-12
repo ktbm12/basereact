@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { fetchData } from "../api";
 
-const testimonials = [
+const mockTestimonials = [
   {
     name: "Jean Dupont",
     role: "CEO chez TechStart",
@@ -16,6 +18,26 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    const getTestimonials = async () => {
+      const data = await fetchData("cms/testimonials");
+      if (data && data.length > 0) {
+        const formattedData = data.map(t => ({
+          name: t.name,
+          role: t.company,
+          content: t.message,
+          avatar: t.photo || `https://i.pravatar.cc/150?u=${t.name}`
+        }));
+        setTestimonials(formattedData);
+      } else {
+        setTestimonials(mockTestimonials);
+      }
+    };
+    getTestimonials();
+  }, []);
+
   return (
     <section id="testimonials" className="section-container border-t border-slate-900 bg-slate-950/50">
       <div className="text-center mb-16">
@@ -26,7 +48,7 @@ export default function Testimonials() {
       <div className="grid md:grid-cols-2 gap-8">
         {testimonials.map((t, i) => (
           <motion.div
-            key={t.name}
+            key={i}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -37,7 +59,7 @@ export default function Testimonials() {
               {t.content}
             </p>
             <div className="flex items-center gap-4">
-              <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full grayscale hover:grayscale-0 transition-all" />
+              <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full grayscale hover:grayscale-0 transition-all object-cover" />
               <div>
                 <h4 className="font-bold text-white">{t.name}</h4>
                 <p className="text-xs text-slate-500 uppercase font-bold">{t.role}</p>
@@ -46,6 +68,4 @@ export default function Testimonials() {
           </motion.div>
         ))}
       </div>
-    </section>
-  );
-}
+    </section>2

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { fetchData } from "../api";
 
-const services = [
+const mockServices = [
   {
     title: "Développement Web Full-Stack",
     desc: "Création d'applications web robustes avec Django et React, de la conception à la mise en production.",
@@ -40,6 +42,26 @@ const services = [
 ];
 
 export default function Services() {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const getServices = async () => {
+      const data = await fetchData("cms/services");
+      if (data && data.length > 0) {
+        // Map backend data and preserve some default icons if missing
+        const formattedData = data.map((s, i) => ({
+          title: s.title,
+          desc: s.description,
+          icon: mockServices[i % mockServices.length].icon // Use cyclical mock icons for now
+        }));
+        setServices(formattedData);
+      } else {
+        setServices(mockServices);
+      }
+    };
+    getServices();
+  }, []);
+
   return (
     <section id="services" className="section-container border-t border-slate-900">
       <div className="mb-16">
@@ -50,7 +72,7 @@ export default function Services() {
       <div className="grid md:grid-cols-2 gap-8">
         {services.map((s, i) => (
           <motion.div
-            key={s.title}
+            key={i}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework import viewsets
 from .models import Project, Skill, Service, BlogPost, Testimonial
-from .serializers import ProjectSerializer, SkillSerializer, ServiceSerializer, BlogSerializer, TestimonialSerializer
+from .serializers import ProjectSerializer, SkillSerializer, ServiceSerializer, BlogSerializer, TestimonialSerializer,SiteConfiguration
 
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
@@ -26,9 +26,9 @@ class TestimonialViewSet(viewsets.ModelViewSet):
     serializer_class = TestimonialSerializer
 
 from rest_framework import viewsets
-from .models import SiteSettings
+
 from .serializers import SiteSettingsSerializer
 
 class SiteSettingsViewSet(viewsets.ModelViewSet):
-    queryset = SiteSettings.objects.all()
+    queryset = SiteConfiguration.objects.all()
     serializer_class = SiteSettingsSerializer

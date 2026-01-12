@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { fetchData } from "../api";
 import braidingImg from "../assets/Capture d’écran du 2026-01-11 08-15-41.png";
 import fuchsImg from "../assets/Capture d’écran du 2026-01-11 08-24-31.png";
 
-const projectList = [
+const mockProjects = [
   {
     title: "Black Braiding Palace",
     category: "E-Commerce",
@@ -30,6 +32,29 @@ const projectList = [
 ];
 
 export default function Projects() {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const getProjects = async () => {
+      const data = await fetchData("cms/projects");
+      if (data && data.length > 0) {
+        // Transform backend data to match UI expected format if needed
+        const formattedData = data.map(p => ({
+            title: p.title,
+            category: p.category || "Development",
+            image: p.image,
+            desc: p.description,
+            tech: p.tech_stack ? p.tech_stack.split(',').map(t => t.trim()) : [],
+            link: p.live_url
+        }));
+        setProjects(formattedData);
+      } else {
+        setProjects(mockProjects);
+      }
+    };
+    getProjects();
+  }, []);
+
   return (
     <section id="projects" className="section-container border-t border-slate-900 bg-slate-950">
       <div className="mb-16">
@@ -43,7 +68,7 @@ export default function Projects() {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {projectList.map((project, index) => (
+        {projects.map((project, index) => (
           <motion.div
             key={project.title}
             initial={{ opacity: 0, y: 20 }}
@@ -57,6 +82,9 @@ export default function Projects() {
                 src={project.image} 
                 alt={project.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                onError={(e) => {
+                  e.target.src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop";
+                }}
               />
               <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/0 transition-colors"></div>
               

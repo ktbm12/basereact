@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { fetchData } from "../api";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    const getSettings = async () => {
+      const data = await fetchData("cms/sitesettings");
+      if (data && data.length > 0) {
+        setSettings(data[0]);
+      }
+    };
+    getSettings();
+  }, []);
 
   const menuItems = [
     { name: "Accueil", href: "#home" },
@@ -19,7 +31,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
         {/* LOGO */}
         <a href="#home" className="text-xl font-bold text-white tracking-tighter">
-          KTB<span className="text-indigo-500">.</span>DEV
+          {settings?.site_name ? (
+            <>
+              {settings.site_name.split('.')[0]}<span className="text-indigo-500">.</span>{settings.site_name.split('.')[1] || "DEV"}
+            </>
+          ) : (
+            <>KTB<span className="text-indigo-500">.</span>DEV</>
+          )}
         </a>
 
         {/* Desktop Menu */}
