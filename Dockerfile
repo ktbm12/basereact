@@ -15,7 +15,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     gettext \
     git \
+    libpango-1.0-0 \
+    libpangoft2-1.0-0 \
+    libgdk-pixbuf-xlib-2.0-0 \
+    shared-mime-info \
     && rm -rf /var/lib/apt/lists/*
+
+
 
 # Install Python dependencies
 COPY requirements.txt .

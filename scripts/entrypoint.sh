@@ -10,8 +10,8 @@ python manage.py migrate --noinput
 echo "📦 Collecting static files..."
 python manage.py collectstatic --noinput --clear
 
-echo "🌐 Compiling translations..."
-python manage.py compilemessages -i .venv -i node_modules -l en # English
+# echo "🌐 Compiling translations..."
+# python manage.py compilemessages -i .venv -i node_modules -l en # English
 
 echo "✅ Translation Compilation Complete"
 
