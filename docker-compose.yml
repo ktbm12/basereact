@@ -1,7 +1,7 @@
 services:
-  web:
+  pololio_service:
     build: .
-    container_name: web
+    container_name: pololio_service
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 --timeout 120
     volumes:
       - .:/app
@@ -13,7 +13,7 @@ services:
       - .env
     depends_on:
       - db
-      - redis
+      # - redis
     networks:
       - mynetwork
 
@@ -30,27 +30,27 @@ services:
     networks:
       - mynetwork
 
-  redis:
-    image: redis:7
-    container_name: redis
-    ports:
-      - "6379:6379"
-    networks:
-      - mynetwork
+  # redis:
+  #   image: redis:7
+  #   container_name: redis
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - mynetwork
 
-  celery:
-    build: .
-    container_name: celery
-    command: celery -A config worker -l info
-    volumes:
-      - .:/app
-    env_file:
-      - .env
-    depends_on:
-      - db
-      - redis
-    networks:
-      - mynetwork
+  # celery:
+  #   build: .
+  #   container_name: celery
+  #   command: celery -A config worker -l info
+  #   volumes:
+  #     - .:/app
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   networks:
+  #     - mynetwork
 
 volumes:
   postgres_data:
