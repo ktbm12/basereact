@@ -1,29 +1,31 @@
-FROM python:3.12-slim
+# =========================
+# Stage 1: Build Python dependencies
+# =========================
+FROM python:3.11-slim AS builder
 
-# Variables d'environnement pour Python
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Définir le répertoire de travail
 WORKDIR /app
 
-# Installer les dépendances système
-RUN apt-get update && apt-get install -y \
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
+    pkg-config \
+    libcairo2-dev \
+    libffi-dev \
+    libssl-dev \
     libpq-dev \
+    gettext \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
-# Copier le fichier requirements et installer Python dependencies
+# Install Python dependencies
 COPY requirements.txt .
-RUN pip install --upgrade pip \
-    && pip install -r requirements.txt \
-    && pip install gunicorn
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copier le reste du code
+# Copy the app source code
 COPY . .
 
-# Exposer le port Django
-EXPOSE 8000
+# Copy entrypoint
+COPY scripts/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Commande pour démarrer Django avec gunicorn
-CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000"]
+ENTRYPOINT ["/entrypoint.sh"]
