@@ -1,22 +1,3 @@
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { fetchData } from "../api";
-
-const mockTestimonials = [
-  {
-    name: "Jean Dupont",
-    role: "CEO chez TechStart",
-    content: "Une collaboration exceptionnelle. Le travail sur le backend Django est d une propreté rare. Je recommande vivement !",
-    avatar: "https://i.pravatar.cc/150?u=jean"
-  },
-  {
-    name: "Sarah Mendy",
-    role: "Product Manager",
-    content: "Il a su transformer notre vision complexe en une interface React fluide et intuitive. Un vrai expert full-stack.",
-    avatar: "https://i.pravatar.cc/150?u=sarah"
-  }
-];
-
 export default function Testimonials() {
   const [testimonials, setTestimonials] = useState([]);
 
@@ -68,4 +49,6 @@ export default function Testimonials() {
           </motion.div>
         ))}
       </div>
-    </section>2
+    </section>
+  );
+}
